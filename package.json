@@ -1,0 +1,15 @@
+{
+  "name": "mapd713-a1-muskanaggarwal",
+  "version": "1.0.0",
+  "description": "Assignment-1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muskan Aggarwal",
+  "license": "ISC",
+  "dependencies": {
+    "restify": "^11.1.0",
+    "save": "^2.9.0"
+  }
+}
