@@ -129,5 +129,49 @@ server.get('/products/:id', function (req, res, next) {
     })
 })
 
+// Delete all products
+server.del('/products', function (req, res, next) {
+    deleteRequests = deleteRequests + 1;
 
+    console.log('');
+    console.log('');
+    console.log('DELETING ALL PRODUCTS !!');
+    console.log('Endpoint - http://127.0.0.1:3000/products');
+    console.log('DELETE : params - ' + JSON.stringify(req.params));
+    console.log('DELETE : Deleting all products');
+    console.log('Request counter --> GET: ' + getRequests + ', POST: ' + postRequests + ', DELETE: ' + deleteRequests);
+
+    // Delete all products with the persistence engine
+    productsSave.deleteMany({}, function (error, products) {
+  
+      // If there are any errors, pass them to next in the correct format
+      if (error) return next(new Error(JSON.stringify(error.errors)))
+  
+      // Send a 204 response
+      res.send(204);
+    })
+})
+
+// Delete product with the given id
+server.del('/products/:id', function (req, res, next) {
+    deleteRequests = deleteRequests + 1;
+
+    console.log('');
+    console.log('');
+    console.log('DELETING PRODUCT (ID: ' + req.params.id + ') !!');
+    console.log('Endpoint - http://127.0.0.1:3000/products' + req.params.id);
+    console.log('DELETE : params - ' + JSON.stringify(req.params));
+    console.log('DELETE : Deleting product');
+    console.log('Request counter --> GET: ' + getRequests + ', POST: ' + postRequests + ', DELETE: ' + deleteRequests);
+
+    // Delete the product with the persistence engine
+    productsSave.delete(req.params.id, function (error, product) {
+
+        // If there are any errors, pass them to next in the correct format
+        if (error) return next(new Error(JSON.stringify(error.errors)))
+
+        // Send a 204 response
+        res.send(204)
+    })
+})
 
