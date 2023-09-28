@@ -3,6 +3,7 @@
 - I have used restify and save for dtaa persistence
 - I have made functions for GET, POST and Delete
 - You can perform these actions for all products or product by id
+- GITHUB URL - https://github.com/muskan251027/MAPD713-A1-MuskanAggarwal
 
 ## APPLICATION LOGIC FOR SEQUENCE DIAGRAM
 Client->Products Web API: Http Request  
