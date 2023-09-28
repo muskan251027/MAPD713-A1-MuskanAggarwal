@@ -81,4 +81,53 @@ server.post('/products', function (req, res, next) {
     })
 })
 
+// Get all products in the system
+server.get('/products', function (req, res, next) {
+    getRequests = getRequests + 1;
+
+    console.log('');
+    console.log('');
+    console.log('GETTING ALL PRODUCTS !!');
+    console.log('Endpoint - http://127.0.0.1:3000/products');
+    console.log('GET : params - ' + JSON.stringify(req.params));
+    console.log('GET : Receiving products');
+    console.log('Request counter --> GET: ' + getRequests + ', POST: ' + postRequests + ', DELETE: ' + deleteRequests);
+
+    // Find every entity within the given collection
+    productsSave.find({}, function (error, products) {
+
+        // Return all of the products in the system
+        res.send(products)
+    })
+})
+
+// Get a single product by its product id
+server.get('/products/:id', function (req, res, next) {
+    getRequests = getRequests + 1;
+
+    console.log('');
+    console.log('');
+    console.log('GETTING INFO ABOUT PRODUCT (ID: ' + req.params.id + ') !!');
+    console.log('Endpoint - http://127.0.0.1:3000/products/' + req.params.id);
+    console.log('GET : params - ' + JSON.stringify(req.params));
+    console.log('GET : Receiving product');
+    console.log('Request counter --> GET: ' + getRequests + ', POST: ' + postRequests + ', DELETE: ' + deleteRequests);
+  
+    // Find a single product by their id within save
+    productsSave.findOne({ _id: req.params.id }, function (error, product) {
+  
+      // If there are any errors, pass them to next in the correct format
+      if (error) return next(new Error(JSON.stringify(error.errors)))
+  
+      if (product) {
+        // Send the product if no issues
+        res.send(product)
+      } else {
+        // Send 404 header if the product doesn't exist
+        res.send(404)
+      }
+    })
+})
+
+
 
