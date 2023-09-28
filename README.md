@@ -5,7 +5,7 @@
 - You can perform these actions for all products or product by id
 
 ## APPLICATION LOGIC FOR SEQUENCE DIAGRAM
-Product->Web API: Http Request
+Product->Web API: Http Request  
 Note right of Product: POST \n/serverUrl/products\n{productId:12, name:"User1", price:25, quantity: 12}
 Web API->Data Access: Create product
 Data Access->DB: Insert Product
